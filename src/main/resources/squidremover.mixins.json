@@ -1,0 +1,4 @@
+{
+ "required":true,"package":"digitalanxiety.squidremover.mixin","compatibilityLevel":"JAVA_${java}",
+ "injectors":{"defaultRequire":1},"mixins":["EntitySquidMixin"],"client":[]
+}
