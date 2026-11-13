@@ -43,3 +43,13 @@ tasks.processResources {
  inputs.properties(resourceMap); duplicatesStrategy=DuplicatesStrategy.INCLUDE
  filesMatching(listOf("fabric.mod.json","*.mixins.json")) { expand(resourceMap) }
 }
+
+
+// Prevent old Minecraft LWJGL 2 dependencies from being pulled into BTA 8.0.1.
+configurations.configureEach {
+    exclude(group = "org.lwjgl.lwjgl")
+    exclude(group = "net.java.jutils")
+    exclude(group = "net.java.jinput")
+    exclude(group = "net.sf.jopt-simple")
+    exclude(group = "net.minecraft", module = "launchwrapper")
+}
