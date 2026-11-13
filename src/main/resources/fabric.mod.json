@@ -1,0 +1,7 @@
+{
+ "schemaVersion":1,"id":"squidremover","version":"${version}","name":"Squid Remover",
+ "description":"Removes squid entities on the server (BTA 8.0.1).",
+ "authors":["DigitalAnxiety"],"license":"MIT","environment":"*",
+ "mixins":["squidremover.mixins.json"],
+ "depends":{"fabricloader":">=${fabricloader}","minecraft":"*","java":">=${java}"}
+}
