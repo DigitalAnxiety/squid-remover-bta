@@ -27,11 +27,16 @@ public abstract class BiomeMixin {
             return;
         }
 
-        Iterator<SpawnListEntry> entries = waterCreatures.iterator();
-        while (entries.hasNext()) {
-            if (entries.next().entityClass == MobSquid.class) {
-                entries.remove();
+        try {
+            Iterator<SpawnListEntry> entries = waterCreatures.iterator();
+            while (entries.hasNext()) {
+                if (entries.next().entityClass == MobSquid.class) {
+                    entries.remove();
+                }
             }
+        } catch (UnsupportedOperationException ignored) {
+            // Some special biomes may expose immutable spawn lists.
+            // EntitySquidMixin still removes any squid that reaches the tick loop.
         }
     }
 }
