@@ -1,0 +1,61 @@
+name: Publish Squid Remover Release
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    # The merge commit for the first public release is deliberately marked [release].
+    if: contains(github.event.head_commit.message, '[release]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release commit
+        uses: actions/checkout@v6
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build mod
+        run: gradle build --no-daemon
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: v1.0.1+8.0.1
+          target_commitish: ${{ github.sha }}
+          name: Squid Remover 1.0.1 — Better Than Adventure 8.0.1
+          body: |
+            ## Squid Remover 1.0.1
+
+            A small client/server-side utility mod for **Better Than Adventure 8.0.1**.
+
+            ### What it does
+            - Removes squid from natural water-creature spawn lists in biomes.
+            - Removes squid already present in existing worlds.
+            - Removes squid created by other sources when they enter their update loop.
+
+            ### Installation
+            1. Download `squidremover-1.0.1+8.0.1.jar` below.
+            2. Place it in your instance's `minecraft/mods` folder.
+            3. Remove older Squid Remover versions before launching.
+
+            **Target:** BTA 8.0.1 · **Runtime:** Java 17
+
+            The source JAR is also attached for anyone who wants to inspect the code.
+          files: |
+            build/libs/squidremover-1.0.1+8.0.1.jar
+            build/libs/squidremover-1.0.1+8.0.1-sources.jar
+          draft: false
+          prerelease: false
+          make_latest: true
