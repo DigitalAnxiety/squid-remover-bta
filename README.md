@@ -1,6 +1,6 @@
 # Squid Remover — Better Than Adventure 8.0.1
 
-Removes squid entities on the server. Intended for multiplayer: install the JAR on the **server**; players do not need to install it client-side.
+Prevents natural squid spawning in every biome and removes any squid that is already present or is created by another source. Intended for multiplayer: install the JAR on the **server**; players do not need to install it client-side.
 
 ## Download the mod
 After a successful build, open **Actions → Build Squid Remover → latest run → Artifacts** and download `squid-remover-bta-8.0.1` (ZIP containing the JAR).
